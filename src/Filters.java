@@ -147,6 +147,32 @@ public class Filters {
   return outputImage;
  }
 
+ public BufferedImage contrastImage(BufferedImage inputImage, double factor) {
+  width = pixelValues.getWidth(inputImage);
+  height = pixelValues.getHeight(inputImage);
+  BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+
+  for (int y = 0; y < height; y++) {
+   for (int x = 0; x < width; x++) {
+    int pixel = inputImage.getRGB(x, y);
+
+    int alpha = (pixel >> 24) & 0xFF;
+    int red = (pixel >> 16) & 0xFF;
+    int green = (pixel >> 8) & 0xFF;
+    int blue = pixel & 0xFF;
+
+    red = (int) Math.min(255, Math.max(0, (red - 128) * factor + 128));
+    green = (int) Math.min(255, Math.max(0, (green - 128) * factor + 128));
+    blue = (int) Math.min(255, Math.max(0, (blue - 128) * factor + 128));
+
+    int adjustedPixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
+    outputImage.setRGB(x, y, adjustedPixel);
+   }
+  }
+
+  return outputImage;
+ }
+
  public BufferedImage applyFilters(BufferedImage inputImage, int filterInput) {
   switch (filterInput) {
    case 1:
@@ -162,6 +188,9 @@ public class Filters {
     return changeBrightness(inputImage, increase);
    case 6:
     return blurImage(inputImage);
+   case 7:
+    double factor = new FilterInput().changeFactor();
+    return contrastImage(inputImage, factor);
   }
 
   return inputImage;

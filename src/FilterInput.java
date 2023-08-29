@@ -19,8 +19,15 @@ public class FilterInput {
 
  public int changeBrightness() {
   Scanner scan = new Scanner(System.in);
-  System.out.println("Enter the percentage of brightness you want to increase.");
+  System.out.println("Enter the percentage of brightness you want to increase: ");
   int input = scan.nextInt();
+  return input;
+ }
+
+ public double changeFactor() {
+  Scanner scan = new Scanner(System.in);
+  System.out.println("Enter the factor of contrast you want to increase: ");
+  double input = scan.nextDouble();
   return input;
  }
 }
