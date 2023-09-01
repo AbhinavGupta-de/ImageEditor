@@ -1,4 +1,5 @@
-import java.awt.*;
+package imageEditor.in;
+
 import java.awt.image.*;
 import java.util.*;
 import javax.imageio.*;

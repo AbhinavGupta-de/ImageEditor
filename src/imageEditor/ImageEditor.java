@@ -1,4 +1,11 @@
+package imageEditor;
+
 import java.awt.image.BufferedImage;
+
+import imageEditor.filters.Filters;
+import imageEditor.in.FilterInput;
+import imageEditor.in.InputFile;
+import imageEditor.output.OutputImage;
 
 public class ImageEditor {
     public void run() {

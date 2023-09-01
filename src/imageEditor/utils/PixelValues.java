@@ -1,3 +1,5 @@
+package imageEditor.utils;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
